@@ -16,7 +16,7 @@ VCR.configure do |c|
   c.ignore_localhost = true
   c.cassette_library_dir = 'spec/support/fixtures/vcr_cassettes'
   c.allow_http_connections_when_no_cassette = true
-  c.default_cassette_options = { match_requests_on: [:uri] }
+  c.default_cassette_options = { match_requests_on: %i[host path] }
 
   # Filter sensitive test credentials from VCR interaction.
   c.filter_sensitive_data('<API_KEY>') { ENV['DHL_UK_API_KEY'] }
