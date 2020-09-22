@@ -20,6 +20,7 @@ RSpec.describe DhlUk::AuthToken do
           VCR.use_cassette('auth_token/wrong_api_key') do
             expect { subject.token }.to raise_error(DhlUk::Errors::AuthTokenError) do |err|
               expect(err.status).to eq(401)
+              expect(err.reason).to eq('Unauthorized')
               expect(err.body).not_to be_empty
             end
           end
@@ -33,6 +34,7 @@ RSpec.describe DhlUk::AuthToken do
           VCR.use_cassette('auth_token/wrong_username') do
             expect { subject.token }.to raise_error(DhlUk::Errors::AuthTokenError) do |err|
               expect(err.status).to eq(401)
+              expect(err.reason).to match('Unauthorized')
               expect(err.body).to be_empty
             end
           end
@@ -46,6 +48,7 @@ RSpec.describe DhlUk::AuthToken do
           VCR.use_cassette('auth_token/wrong_password') do
             expect { subject.token }.to raise_error(DhlUk::Errors::AuthTokenError) do |err|
               expect(err.status).to eq(401)
+              expect(err.reason).to match('Unauthorized')
               expect(err.body).to be_empty
             end
           end
