@@ -1,0 +1,41 @@
+Style/Documentation:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Enabled: false
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+AllCops:
+  TargetRubyVersion: 2.7
+  DisplayCopNames: true
+  Include:
+    - '**/*.rb'
+    - '**/Rakefile'
+    - '**/*.rake'
+    - '**/*.gemspec'
