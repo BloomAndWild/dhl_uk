@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://services.qa.dhlparcel.co.uk/gateway/SSOAuthenticationAPI/1.0/ssoAuth/users/authenticate?password=<PASSWORD>&username=dev%2Bdhluk@bloomandwild.com
+    uri: https://services.qa.dhlparcel.co.uk/gateway/SSOAuthenticationAPI/1.0/ssoAuth/users/authenticate?password=<PASSWORD>&username=<USERNAME>
     body:
       encoding: US-ASCII
       string: ''
@@ -35,7 +35,7 @@ http_interactions:
       Content-Type:
       - application/json
       Content-Length:
-      - '276'
+      - '275'
     body:
       encoding: ASCII-8BIT
       string: |-
@@ -44,10 +44,10 @@ http_interactions:
             "errors": [
               {
                 "title": " Unable to identify the application for the request",
-                "detail": "API Gateway encountered an error. Request Details - Service: SSOAuthenticationAPI, Operation: /ssoAuth/users/authenticate, Invocation Time: 15:38:42, Date: 22-Sep-2020,  Client IP: 10.217.36.10, User: Default and Application: null"
+                "detail": "API Gateway encountered an error. Request Details - Service: SSOAuthenticationAPI, Operation: /ssoAuth/users/authenticate, Invocation Time: 17:25:41, Date: 22-Sep-2020,  Client IP: 10.217.36.10, User: Default and Application: null"
               }
             ]
           }
         ]"}
-  recorded_at: Tue, 22 Sep 2020 14:38:43 GMT
+  recorded_at: Tue, 22 Sep 2020 16:25:41 GMT
 recorded_with: VCR 6.0.0

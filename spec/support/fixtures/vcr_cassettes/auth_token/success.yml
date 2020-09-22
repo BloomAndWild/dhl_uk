@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://services.qa.dhlparcel.co.uk/gateway/SSOAuthenticationAPI/1.0/ssoAuth/users/authenticate?password=<PASSWORD>&username=dev%2Bdhluk@bloomandwild.com
+    uri: https://services.qa.dhlparcel.co.uk/gateway/SSOAuthenticationAPI/1.0/ssoAuth/users/authenticate?password=<PASSWORD>&username=<USERNAME>
     body:
       encoding: US-ASCII
       string: ''
@@ -10,7 +10,7 @@ http_interactions:
       User-Agent:
       - Faraday v1.0.1
       Content-Type:
-      - application/json; charset=utf-8
+      - application/json
       X-Api-Key:
       - "<API_KEY>"
       Accept-Encoding:
@@ -36,10 +36,10 @@ http_interactions:
       - '323'
     body:
       encoding: ASCII-8BIT
-      string: '[{"authenticationToken":"BB6C8B30-59F3-4981-BF0E-570686621091","accounts":[{"accountNumber":"K118696","status":"Active","type":"Domestic","companyName":"BLOOM
+      string: '[{"authenticationToken":"3593A9F0-1E3A-41BD-8366-B72E9540099B","accounts":[{"accountNumber":"K118696","status":"Active","type":"Domestic","companyName":"BLOOM
         AND WILD LIMITED","tradingAddress":"BLOOM AND WILD LIMITED, BLOOM AND WILD
         LIMITED, FLAMINGO FLOWERS LTD, STONE GATE, SPALDING, PE12 6HR","region":"England","postcode":"LE4
         1JY","contactNumber":"020 3984 8341","VATNumber":"","customerRefAlias":"Customer
         Reference","alternativeRefAlias":"Alternative Reference"}]}]'
-  recorded_at: Tue, 22 Sep 2020 14:37:35 GMT
+  recorded_at: Tue, 22 Sep 2020 16:25:12 GMT
 recorded_with: VCR 6.0.0

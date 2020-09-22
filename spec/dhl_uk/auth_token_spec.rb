@@ -7,7 +7,7 @@ RSpec.describe DhlUk::AuthToken do
 
       it 'returns the token' do
         VCR.use_cassette('auth_token/success') do
-          expect(subject.token).to eq('BB6C8B30-59F3-4981-BF0E-570686621091')
+          expect(subject.token).to eq('3593A9F0-1E3A-41BD-8366-B72E9540099B')
         end
       end
     end
