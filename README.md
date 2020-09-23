@@ -1,20 +1,18 @@
 # DhlUk
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dhl_uk`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Ruby wrapper for DHL UK API.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'dhl_uk'
+gem "dhl_uk", branch: "master", github: "BloomAndWild/dhl_uk"
 ```
 
 And then execute:
 
-    $ bundle install
+    $ bundle
 
 Or install it yourself as:
 
@@ -22,15 +20,41 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Configure client
 
-## Development
+```ruby
+DhlUk::Client.configure do |config|
+  config.base_url = ENV.fetch('DHL_UK_BASE_URL')
+  config.api_key = ENV.fetch('DHL_UK_API_KEY')
+  config.username = ENV.fetch('DHL_UK_USERNAME')
+  config.password = ENV.fetch('DHL_UK_PASSWORD')
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+  logger = Logger.new(STDERR)
+  logger.level = :debug
+  config.logger = logger
+end
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+### SSO Authentication
+
+Authenticate with SSO Authentication endpoint:
+
+```ruby
+DhlUk::AuthToken.new.token
+```
+
+If successful, it will return an authentication token for use in further requests.
+
+## Running specs
+
+To run the specs, add your sandbox credentials to your dev env:
+```
+DHL_UK_BASE_URL=https://services.qa.dhlparcel.co.uk
+DHL_UK_API_KEY=
+DHL_UK_USERNAME=
+DHL_UK_PASSWORD=
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/dhl_uk.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/BloomAndWild/dhl_uk.

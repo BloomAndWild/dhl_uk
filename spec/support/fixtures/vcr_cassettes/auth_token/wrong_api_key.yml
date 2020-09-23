@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://services.qa.dhlparcel.co.uk/gateway/SSOAuthenticationAPI/1.0/ssoAuth/users/authenticate?password=<PASSWORD>&username=<USERNAME>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Content-Type:
+      - application/json
+      X-Api-Key:
+      - foo_bar
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Accept:
+      - "*/*"
+      Www-Authenticate:
+      - APIKey Realm = 'APIGateway'
+      User-Agent:
+      - Faraday v1.0.1
+      Host:
+      - services.qa.dhlparcel.co.uk
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '275'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {"Exception":"[
+          {
+            "errors": [
+              {
+                "title": " Unable to identify the application for the request",
+                "detail": "API Gateway encountered an error. Request Details - Service: SSOAuthenticationAPI, Operation: /ssoAuth/users/authenticate, Invocation Time: 17:25:41, Date: 22-Sep-2020,  Client IP: 10.217.36.10, User: Default and Application: null"
+              }
+            ]
+          }
+        ]"}
+  recorded_at: Tue, 22 Sep 2020 16:25:41 GMT
+recorded_with: VCR 6.0.0
