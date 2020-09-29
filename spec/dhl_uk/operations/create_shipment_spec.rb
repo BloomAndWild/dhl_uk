@@ -3,8 +3,9 @@
 RSpec.describe DhlUk::Operations::CreateShipment do
   subject { described_class.new(payload: payload) }
 
-  describe '#execute' do
+  before { configure_client }
 
+  describe '#execute' do
     let(:payload) do
       {
         "username": "dev+dhluk@bloomandwild.com",
@@ -68,8 +69,6 @@ RSpec.describe DhlUk::Operations::CreateShipment do
     end
 
     context 'on successful request' do
-      before { configure_client }
-
       let(:identifiers) do
         {
           identifierType: "consignmentNumber",
@@ -92,8 +91,8 @@ RSpec.describe DhlUk::Operations::CreateShipment do
         before { configure_client(api_key: 'foo_bar') }
 
         it 'raises an exception' do
-          VCR.use_cassette('auth_token/wrong_api_key') do
-            expect { subject.token }.to raise_error(DhlUk::Errors::AuthTokenError) do |err|
+          VCR.use_cassette('operations/create_shipment_api_key_failure') do
+            expect { subject.execute }.to raise_error(DhlUk::Errors::ResponseError) do |err|
               expect(err.status).to eq(401)
               expect(err.reason).to eq('Unauthorized')
               expect(err.body).not_to be_empty
@@ -102,29 +101,47 @@ RSpec.describe DhlUk::Operations::CreateShipment do
         end
       end
 
-      context 'with incorrect username' do
-        before { configure_client(username: 'foo_bar') }
+      context 'without a valid auth token' do
+        before { payload[:authenticationToken] = "not-a-valid-token" }
 
         it 'raises an exception' do
-          VCR.use_cassette('auth_token/wrong_username') do
-            expect { subject.token }.to raise_error(DhlUk::Errors::AuthTokenError) do |err|
+          VCR.use_cassette('operations/create_shipment_auth_token_failure') do
+            expect { subject.execute }.to raise_error(DhlUk::Errors::ResponseError) do |err|
               expect(err.status).to eq(401)
-              expect(err.reason).to match('Unauthorized')
+              expect(err.reason).to eq("com.wm.net.NetException: [ISC.0064.9314] Authorization Required: Unauthorized")
               expect(err.body).to be_empty
             end
           end
         end
       end
 
-      context 'with incorrect password' do
-        before { configure_client(password: 'foo_bar') }
+      context 'without a postcode' do
+        before { payload[:delivery][:deliveryAddresses][0][:postcode] = nil }
+
+        let(:error_message) { ["The Postcode field is required."] }
 
         it 'raises an exception' do
-          VCR.use_cassette('auth_token/wrong_password') do
-            expect { subject.token }.to raise_error(DhlUk::Errors::AuthTokenError) do |err|
-              expect(err.status).to eq(401)
-              expect(err.reason).to match('Unauthorized')
-              expect(err.body).to be_empty
+          VCR.use_cassette('operations/create_shipment_postcode_failure') do
+            expect { subject.execute }.to raise_error(DhlUk::Errors::ResponseError) do |err|
+              expect(err.status).to eq(400)
+              expect(err.reason).to eq('Bad Request')
+              expect(err.body[:Errors].values).to include(error_message)
+            end
+          end
+        end
+      end
+
+      context 'without a collectionDate' do
+        before { payload[:collectionInfo][:collectionDate] = nil }
+
+        let(:error_message) { ["Either Collection Job Number or Date must be supplied"] }
+
+        it 'raises an exception' do
+          VCR.use_cassette('operations/create_shipment_collection_date_failure') do
+            expect { subject.execute }.to raise_error(DhlUk::Errors::ResponseError) do |err|
+              expect(err.status).to eq(400)
+              expect(err.reason).to eq('Bad Request')
+              expect(err.body[:Errors].values).to include(error_message)
             end
           end
         end

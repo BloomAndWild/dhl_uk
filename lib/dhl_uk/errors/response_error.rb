@@ -7,6 +7,7 @@ module DhlUk
 
       def initialize(payload:, response:)
         @payload = payload
+
         super(response)
       end
     end
