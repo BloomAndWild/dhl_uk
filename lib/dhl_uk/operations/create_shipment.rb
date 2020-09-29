@@ -20,7 +20,7 @@ module DhlUk
 
         return JSON.parse(response.body, symbolize_names: true) if response.success?
 
-        raise DhlUk::Errors::ResponseError.new(payload: payload, body: response.body, status: response.status)
+        raise DhlUk::Errors::ResponseError.new(payload: payload, response: response)
       end
 
       private
