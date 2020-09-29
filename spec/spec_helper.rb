@@ -21,6 +21,7 @@ VCR.configure do |c|
   # Filter sensitive test credentials from VCR interaction.
   c.filter_sensitive_data('<API_KEY>') { ENV['DHL_UK_API_KEY'] }
   c.filter_sensitive_data('<USERNAME>') { Faraday::Utils.escape(ENV['DHL_UK_USERNAME']).sub('%40', '@') }
+  c.filter_sensitive_data('<UNENCODED_USERNAME>') { ENV['DHL_UK_USERNAME'] }
   c.filter_sensitive_data('<PASSWORD>') { ENV['DHL_UK_PASSWORD'] }
 end
 
@@ -32,3 +33,5 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+require 'pry'
