@@ -9,6 +9,7 @@ require 'dhl_uk/version'
 require 'dhl_uk/config'
 require 'dhl_uk/client'
 require 'dhl_uk/auth_token'
+require 'dhl_uk/operations/create_shipment'
 
 module DhlUk
 end
