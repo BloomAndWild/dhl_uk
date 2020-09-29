@@ -8,9 +8,9 @@ RSpec.describe DhlUk::Operations::CreateShipment do
   describe '#execute' do
     let(:payload) do
       {
-        "username": "dev+dhluk@bloomandwild.com",
+        "username": ENV['DHL_UK_USERNAME'],
         "authenticationToken": "7312A80B-3D2C-48FD-B051-64FD9714801F",
-        "accountNumber": "K118696",
+        "accountNumber": ENV['DHL_UK_ACCOUNT'],
         "collectionInfo": {
           "collectionJobNumber": "",
           "collectionDate": "2020-09-30"
@@ -72,7 +72,7 @@ RSpec.describe DhlUk::Operations::CreateShipment do
       let(:identifiers) do
         {
           identifierType: "consignmentNumber",
-          identifierValue: "41150120000005"
+          identifierValue: "41150120000007"
         }
       end
 

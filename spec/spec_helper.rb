@@ -23,6 +23,7 @@ VCR.configure do |c|
   c.filter_sensitive_data('<USERNAME>') { Faraday::Utils.escape(ENV['DHL_UK_USERNAME']).sub('%40', '@') }
   c.filter_sensitive_data('<UNENCODED_USERNAME>') { ENV['DHL_UK_USERNAME'] }
   c.filter_sensitive_data('<PASSWORD>') { ENV['DHL_UK_PASSWORD'] }
+  c.filter_sensitive_data('<ACCOUNT_NUMBER>') { ENV['DHL_UK_ACCOUNT'] }
 end
 
 RSpec.configure do |config|

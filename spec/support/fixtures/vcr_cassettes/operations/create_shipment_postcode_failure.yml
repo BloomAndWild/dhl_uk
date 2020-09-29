@@ -5,7 +5,7 @@ http_interactions:
     uri: https://services.qa.dhlparcel.co.uk/gateway/DomesticConsignment/1.0/DomesticConsignment
     body:
       encoding: UTF-8
-      string: '{"username":"<UNENCODED_USERNAME>","authenticationToken":"7312A80B-3D2C-48FD-B051-64FD9714801F","accountNumber":"K118696","collectionInfo":{"collectionJobNumber":"","collectionDate":"2020-09-30"},"delivery":{"localContactName":"Mr
+      string: '{"username":"<UNENCODED_USERNAME>","authenticationToken":"7312A80B-3D2C-48FD-B051-64FD9714801F","accountNumber":"<ACCOUNT_NUMBER>","collectionInfo":{"collectionJobNumber":"","collectionDate":"2020-09-30"},"delivery":{"localContactName":"Mr
         John Doe","localContactNumber":7691347758,"contactNumberType":"mobile","localContactEmail":"JohnDoe@webmail.com","deliveryAddresses":[{"address1":"56
         Far Gosford Street","address2":"","address3":"Ball Hill","postalTown":"Coventry","county":"","postcode":null,"countryCode":"GBR","addressType":"doorstep","servicePointID":"","specialInstructions":"","secureLocation":""}]},"serviceKey":220,"items":1,"totalWeight":1,"customerReference":"Delivery#id","parcels":[{"length":58,"width":22,"height":15}],"recipient":{"contactName":"Mr
         John Doe","contactEmail":"JohnDoe@webmail.com","contactNumber":"02046768678","recipientAddress":{"businessName":null,"address1":"Apartment
@@ -33,8 +33,6 @@ http_interactions:
       - no-cache
       Expires:
       - "-1"
-      X-Stackifyid:
-      - V1|0d6ea5f8-c448-4138-bc33-7d60f38cdc6b|C57971|CD2|
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
@@ -43,5 +41,5 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '{"title":"One or more validation errors occurred.","status":"BadRequest","Errors":{"Delivery.DeliveryAddresses[0].Postcode":["The
         Postcode field is required."]}}'
-  recorded_at: Tue, 29 Sep 2020 14:03:09 GMT
+  recorded_at: Tue, 29 Sep 2020 14:36:12 GMT
 recorded_with: VCR 6.0.0

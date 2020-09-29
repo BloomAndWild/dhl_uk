@@ -5,7 +5,7 @@ http_interactions:
     uri: https://services.qa.dhlparcel.co.uk/gateway/DomesticConsignment/1.0/DomesticConsignment
     body:
       encoding: UTF-8
-      string: '{"username":"<UNENCODED_USERNAME>","authenticationToken":"not-a-valid-token","accountNumber":"K118696","collectionInfo":{"collectionJobNumber":"","collectionDate":"2020-09-30"},"delivery":{"localContactName":"Mr
+      string: '{"username":"<UNENCODED_USERNAME>","authenticationToken":"not-a-valid-token","accountNumber":"<ACCOUNT_NUMBER>","collectionInfo":{"collectionJobNumber":"","collectionDate":"2020-09-30"},"delivery":{"localContactName":"Mr
         John Doe","localContactNumber":7691347758,"contactNumberType":"mobile","localContactEmail":"JohnDoe@webmail.com","deliveryAddresses":[{"address1":"56
         Far Gosford Street","address2":"","address3":"Ball Hill","postalTown":"Coventry","county":"","postcode":"CV1
         5DZ","countryCode":"GBR","addressType":"doorstep","servicePointID":"","specialInstructions":"","secureLocation":""}]},"serviceKey":220,"items":1,"totalWeight":1,"customerReference":"Delivery#id","parcels":[{"length":58,"width":22,"height":15}],"recipient":{"contactName":"Mr
@@ -41,5 +41,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-  recorded_at: Tue, 29 Sep 2020 14:18:09 GMT
+  recorded_at: Tue, 29 Sep 2020 14:36:12 GMT
 recorded_with: VCR 6.0.0
