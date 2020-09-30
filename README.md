@@ -45,6 +45,40 @@ DhlUk::AuthToken.new.token
 
 If successful, it will return an authentication token for use in further requests.
 
+### CreateShipment
+
+The payload requirements are given in [DHL API documentation](https://drive.google.com/file/d/1WYJi5p43L633yailTW1Mbyo7BhZGdYbZ/view)
+pp. 27-34, and include (as well as the delivery address, and sundry information):
+
+```ruby
+      {
+        "username": ENV['DHL_UK_USERNAME'],
+        "authenticationToken": "<AUTH_TOKEN>",
+        "accountNumber": ENV['DHL_UK_ACCOUNT'],
+        "collectionInfo": {
+          "collectionJobNumber": "",
+          "collectionDate": "2020-09-30"
+        },
+        "labelFormat": "PDF200dpi6x4",
+        ...etc
+      }
+```
+To make the request:
+```ruby
+DhlUk::Operations::CreateShipment.new(payload: payload).execute
+```
+If successful, it will return the booking reference and labels in the requested format:
+```ruby
+{
+    "identifiers": [
+        {
+            "identifierType": "consignmentNumber",
+            "identifierValue": "41150120000003"
+        }
+    ],
+    "labels": ["pdf_data"]
+}
+```
 ## Running specs
 
 To run the specs, add your sandbox credentials to your dev env:
