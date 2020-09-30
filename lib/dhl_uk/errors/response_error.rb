@@ -5,7 +5,7 @@ module DhlUk
     class ResponseError < Error
       attr_reader :payload
 
-      def initialize(payload:, response:)
+      def initialize(response, payload)
         @payload = payload
 
         super(response)
