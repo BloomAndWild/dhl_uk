@@ -2,6 +2,7 @@
 
 require 'json'
 require 'faraday'
+require 'savon'
 
 require 'dhl_uk/errors/error'
 require 'dhl_uk/errors/auth_token_error'
