@@ -8,7 +8,7 @@ RSpec.describe DhlUk::Operations::CancelShipment do
   describe '#execute' do
     let(:payload) do
       {
-        "consignment_number": 411501200000016,
+        "consignment_number": "41150120000017",
         "authentication_token": "0936E549-2DBB-4096-B52B-535C156A002C"
       }
     end

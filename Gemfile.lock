@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dhl_uk (0.1.0)
+    dhl_uk (0.2.0)
       faraday
       savon (~> 2.12.0)
 

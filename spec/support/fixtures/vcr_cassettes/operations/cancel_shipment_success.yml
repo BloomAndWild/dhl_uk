@@ -12,11 +12,11 @@ http_interactions:
                 <ser:CancelConsignment>
                 <ser:request>
                 <dat:AuthenticationToken>0936E549-2DBB-4096-B52B-535C156A002C</dat:AuthenticationToken>
-                        <dat:Username><UNENCODED_USERNAME></dat:Username>
-                <dat:ConsignmentNumber>411501200000016</dat:ConsignmentNumber>
-                    </ser:request>
+                <dat:Username><UNENCODED_USERNAME></dat:Username>
+                <dat:ConsignmentNumber>41150120000017</dat:ConsignmentNumber>
+                </ser:request>
                 </ser:CancelConsignment>
-            </soapenv:Body>
+                </soapenv:Body>
                 </soapenv:Envelope>
     headers:
       Soapaction:
@@ -24,7 +24,7 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '672'
+      - '663'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -39,11 +39,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 01 Oct 2020 14:44:32 GMT
+      - Thu, 01 Oct 2020 15:56:52 GMT
       Content-Type:
       - text/xml; charset=utf-8
       Content-Length:
-      - '576'
+      - '438'
       Connection:
       - keep-alive
       X-Frame-Options:
@@ -52,7 +52,6 @@ http_interactions:
       encoding: UTF-8
       string: <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><CancelConsignmentResponse
         xmlns="http://www.UKMail.com/Services/Contracts/ServiceContracts"><CancelConsignmentResult
-        xmlns:a="http://www.UKMail.com/Services/Contracts/DataContracts" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><a:Errors><a:UKMWebError><a:Code>8193</a:Code><a:Description>Validation
-        failed. Consignment Number is invalid.</a:Description></a:UKMWebError></a:Errors><a:Result>Failed</a:Result><a:Warnings/></CancelConsignmentResult></CancelConsignmentResponse></s:Body></s:Envelope>
-  recorded_at: Thu, 01 Oct 2020 14:44:32 GMT
+        xmlns:a="http://www.UKMail.com/Services/Contracts/DataContracts" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><a:Errors/><a:Result>Successful</a:Result><a:Warnings/></CancelConsignmentResult></CancelConsignmentResponse></s:Body></s:Envelope>
+  recorded_at: Thu, 01 Oct 2020 15:56:52 GMT
 recorded_with: VCR 6.0.0

@@ -92,7 +92,7 @@ The payload for the cancel request should look like this:
 ```ruby
   payload = 
     {
-      "consignment_number": 411501200000016,
+      "consignment_number": "411501200000016",
       "authentication_token": "<AUTH_TOKEN>"
     }
 ```
