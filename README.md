@@ -28,6 +28,8 @@ DhlUk::Client.configure do |config|
   config.api_key = ENV.fetch('DHL_UK_API_KEY')
   config.username = ENV.fetch('DHL_UK_USERNAME')
   config.password = ENV.fetch('DHL_UK_PASSWORD')
+  config.cancel_url = ENV.fetch('DHL_UK_CANCEL_URL')
+  config.cancel_wsdl = ENV.fetch('DHL_UK_CANCEL_WSDL')
 
   logger = Logger.new(STDERR)
   logger.level = :debug
@@ -79,6 +81,31 @@ If successful, it will return the booking reference and labels in the requested 
     "labels": ["pdf_data"]
 }
 ```
+
+### CancelShipment
+
+This is a SOAP request (page 41-42 of the [DHL API documentation](https://drive.google.com/file/d/1WYJi5p43L633yailTW1Mbyo7BhZGdYbZ/view)).
+
+The cancel url and location of wsdl should be set in the Client.config.
+
+The payload for the cancel request should look like this:
+```ruby
+  payload = 
+    {
+      "consignment_number": 411501200000016,
+      "authentication_token": "<AUTH_TOKEN>"
+    }
+```
+To make the request: 
+```ruby
+DhlUk::Operations::CancelShipment.new(payload: payload).execute
+```
+If successful, it will return a hash the booking reference and labels in the requested format:
+```ruby
+{
+  result: "Successful"
+}
+```
 ## Running specs
 
 To run the specs, add your sandbox credentials to your dev env:
@@ -87,6 +114,8 @@ DHL_UK_BASE_URL=https://services.qa.dhlparcel.co.uk
 DHL_UK_API_KEY=
 DHL_UK_USERNAME=
 DHL_UK_PASSWORD=
+DHL_UK_CANCEL_URL=
+DHL_UK_CANCEL_WSDL=
 ```
 
 ## Contributing
