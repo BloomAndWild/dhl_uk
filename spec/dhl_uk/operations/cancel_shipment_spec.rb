@@ -59,7 +59,7 @@ RSpec.describe DhlUk::Operations::CancelShipment do
       end
 
       context 'when the consignment is already cancelled' do
-        it 'it fails' do
+        it 'fails' do
           VCR.use_cassette('operations/cancel_shipment_failure_already_cancelled') do
             response = subject.execute
 
@@ -88,7 +88,7 @@ RSpec.describe DhlUk::Operations::CancelShipment do
           )
         end
 
-        it 'it fails' do
+        it 'fails' do
           payload.merge!("consignment_number": "41150120000012")
 
           VCR.use_cassette('operations/cancel_shipment_failure_date_has_passed') do
@@ -120,7 +120,7 @@ RSpec.describe DhlUk::Operations::CancelShipment do
           )
         end
 
-        it 'it fails' do
+        it 'fails' do
           payload.merge!("authentication_token": "xxx6E549-2DBB-4096-B52B-535C156A002C")
 
           VCR.use_cassette('operations/cancel_shipment_failure_authentication') do
@@ -136,12 +136,14 @@ RSpec.describe DhlUk::Operations::CancelShipment do
         end
       end
 
-      context 'when there is a connection error' do
+      context 'when there is an unexpected error' do
+        before { configure_client(cancel_url: 'https://qaX-api.ukmail.com') }
 
-      end
-
-      context 'when there is a SOAP error' do
-
+        it 'raises a error' do
+          VCR.use_cassette('operations/cancel_shipment_savon_config_error') do
+            expect { subject.execute }.to raise_error(DhlUk::Errors::CancelRequestError)
+          end
+        end
       end
     end
   end

@@ -13,12 +13,9 @@ module DhlUk
       def execute
         response = savon_client.call(:cancel_consignment, xml: xml_payload)
 
-        return response.to_hash # handle or if response.success?
-      #   return handle_response(response) if response.success?
-      #
-      #   handle_error_response(response)
-      # rescue Savon::SOAPFault => e
-      #   raise Errors::SoapResponseError.new(xml: e.xml, error_code: e.http.code)
+        response.to_hash
+      rescue => err
+        raise DhlUk::Errors::CancelRequestError.new(err)
       end
 
       private
@@ -79,19 +76,6 @@ module DhlUk
 
       def config
         Client.config
-      end
-
-      def handle_response response_hash
-        cancel_consignment_result = response_hash[:cancel_consignment_response][:cancel_consignment_result]
-
-        return cancel_consignment_result if cancel_consignment_result[:result] == "Successful"
-
-        raise Errors::ResponseError(cancel_consignment_result, payload)
-      end
-
-      def handle_error_response response
-        binding.pry
-        raise Errors::SoapResponseError(response, payload)
       end
     end
   end
