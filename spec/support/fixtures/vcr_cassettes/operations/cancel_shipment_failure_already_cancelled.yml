@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc
+    body:
+      encoding: UTF-8
+      string: |2
+                <soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://www.UKMail.com/Services/Contracts/ServiceContracts' xmlns:dat='http://www.UKMail.com/Services/Contracts/DataContracts'>
+                <soapenv:Header/>
+                <soapenv:Body>
+                <ser:CancelConsignment>
+                <ser:request>
+                <dat:AuthenticationToken>0936E549-2DBB-4096-B52B-535C156A002C</dat:AuthenticationToken>
+                <dat:Username><UNENCODED_USERNAME></dat:Username>
+                <dat:ConsignmentNumber>41150120000017</dat:ConsignmentNumber>
+                </ser:request>
+                </ser:CancelConsignment>
+                </soapenv:Body>
+                </soapenv:Envelope>
+    headers:
+      Soapaction:
+      - '"http://www.UKMail.com/Services/IUKMConsignmentService/CancelConsignment"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '663'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 02 Oct 2020 09:48:15 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '607'
+      Connection:
+      - keep-alive
+      X-Stackifyid:
+      - V1|771d77fc-e4a2-4172-8500-2a75c3d44aab|C57971|CD2|
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><CancelConsignmentResponse
+        xmlns="http://www.UKMail.com/Services/Contracts/ServiceContracts"><CancelConsignmentResult
+        xmlns:a="http://www.UKMail.com/Services/Contracts/DataContracts" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><a:Errors><a:UKMWebError><a:Code>8193</a:Code><a:Description>Validation
+        failed. Consignment is invalid because it has already been cancelled.</a:Description></a:UKMWebError></a:Errors><a:Result>Failed</a:Result><a:Warnings/></CancelConsignmentResult></CancelConsignmentResponse></s:Body></s:Envelope>
+  recorded_at: Fri, 02 Oct 2020 09:48:15 GMT
+recorded_with: VCR 6.0.0
