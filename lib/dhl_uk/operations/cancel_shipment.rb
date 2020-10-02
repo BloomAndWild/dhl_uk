@@ -4,6 +4,7 @@ module DhlUk
   module Operations
     class CancelShipment
       TARGET_NAMESPACE = "http://www.UKMail.com/Services/Contracts/ServiceContracts"
+      SOAP_ACTION = "http://www.UKMail.com/Services/IUKMConsignmentService/CancelConsignment"
 
       def initialize payload:
         @payload = payload
@@ -56,7 +57,7 @@ module DhlUk
 
       def headers
         {
-          'SOAPAction' => 'http://www.UKMail.com/Services/IUKMConsignmentService/CancelConsignment',
+          'SOAPAction' => SOAP_ACTION,
           'context-type' => 'text/xml; charset=utf-8'
         }
       end
