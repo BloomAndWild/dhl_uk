@@ -90,22 +90,26 @@ The cancel url and location of wsdl should be set in the Client.config.
 
 The payload for the cancel request should look like this:
 ```ruby
-  payload = 
-    {
-      "consignment_number": "411501200000016",
-      "authentication_token": "<AUTH_TOKEN>"
-    }
+ {
+    "consignment_number": "411501200000016",
+    "authentication_token": "<AUTH_TOKEN>"
+ }
 ```
 To make the request: 
 ```ruby
 DhlUk::Operations::CancelShipment.new(payload: payload).execute
 ```
-If successful, it will return a hash the booking reference and labels in the requested format:
-```ruby
+If successful, it will return the full response hash from the SOAP request. The status of the response can be found
+by looking at `[:cancel_consignment_response][:cancel_consignment_result]`. This contains,
+ among other things, the key-value pairs as below
+ ```ruby
 {
-  result: "Successful"
+    result: "Successful",  # or "Failed" on failure
+    errors: nil            # or errors hash with further details of reason for failure
 }
-```
+ ```
+If the cancel request fails for some other reason, a `DhlUk::Errors::CancelRequestError` wil be raised.
+
 ## Running specs
 
 To run the specs, add your sandbox credentials to your dev env:
