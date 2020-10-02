@@ -4,7 +4,6 @@ module DhlUk
   module Operations
     class CancelShipment
       TARGET_NAMESPACE = "http://www.UKMail.com/Services/Contracts/ServiceContracts"
-      ENDPOINT = "/Services/UKMConsignmentServices/UKMConsignmentService.svc"
 
       def initialize payload:
         @payload = payload
@@ -27,7 +26,7 @@ module DhlUk
       end
 
       def endpoint
-        config.cancel_url + ENDPOINT
+        config.cancel_url
       end
 
       def auth_token
