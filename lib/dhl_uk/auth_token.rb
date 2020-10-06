@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DhlUk
+module DHLUk
   class AuthToken
     RESOURCE_PATH = '/gateway/SSOAuthenticationAPI/1.0/ssoAuth/users/authenticate'
 

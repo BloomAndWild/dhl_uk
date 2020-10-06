@@ -23,7 +23,7 @@ Or install it yourself as:
 ### Configure client
 
 ```ruby
-DhlUk::Client.configure do |config|
+DHLUk::Client.configure do |config|
   config.base_url = ENV.fetch('DHL_UK_BASE_URL')
   config.api_key = ENV.fetch('DHL_UK_API_KEY')
   config.username = ENV.fetch('DHL_UK_USERNAME')
@@ -42,7 +42,7 @@ end
 Authenticate with SSO Authentication endpoint:
 
 ```ruby
-DhlUk::AuthToken.new.token
+DHLUk::AuthToken.new.token
 ```
 
 If successful, it will return an authentication token for use in further requests.
@@ -67,7 +67,7 @@ pp. 27-34, and include (as well as the delivery address, and sundry information)
 ```
 To make the request:
 ```ruby
-DhlUk::Operations::CreateShipment.new(payload: payload).execute
+DHLUk::Operations::CreateShipment.new(payload: payload).execute
 ```
 If successful, it will return the booking reference and labels in the requested format:
 ```ruby
@@ -97,7 +97,7 @@ The payload for the cancel request should look like this:
 ```
 To make the request: 
 ```ruby
-DhlUk::Operations::CancelShipment.new(payload: payload).execute
+DHLUk::Operations::CancelShipment.new(payload: payload).execute
 ```
 If successful, it will return the full response hash from the SOAP request. The status of the response can be found
 by looking at `[:cancel_consignment_response][:cancel_consignment_result]`. This contains,

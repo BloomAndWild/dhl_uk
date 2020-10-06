@@ -4,7 +4,7 @@ require_relative 'lib/dhl_uk/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'dhl_uk'
-  spec.version       = DhlUk::VERSION
+  spec.version       = DHLUk::VERSION
   spec.authors       = ['Ged Dackys']
   spec.email         = ['ged@bloomandwild.com']
 

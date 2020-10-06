@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe DhlUk::Operations::CreateShipment do
+RSpec.describe DHLUk::Operations::CreateShipment do
   subject { described_class.new(payload: payload) }
 
   before { configure_client }
@@ -92,7 +92,7 @@ RSpec.describe DhlUk::Operations::CreateShipment do
 
         it 'raises an exception' do
           VCR.use_cassette('operations/create_shipment_api_key_failure') do
-            expect { subject.execute }.to raise_error(DhlUk::Errors::ResponseError) do |err|
+            expect { subject.execute }.to raise_error(DHLUk::Errors::ResponseError) do |err|
               expect(err.status).to eq(401)
               expect(err.reason).to eq('Unauthorized')
               expect(err.body).not_to be_empty
@@ -106,7 +106,7 @@ RSpec.describe DhlUk::Operations::CreateShipment do
 
         it 'raises an exception' do
           VCR.use_cassette('operations/create_shipment_auth_token_failure') do
-            expect { subject.execute }.to raise_error(DhlUk::Errors::ResponseError) do |err|
+            expect { subject.execute }.to raise_error(DHLUk::Errors::ResponseError) do |err|
               expect(err.status).to eq(401)
               expect(err.reason).to eq("com.wm.net.NetException: [ISC.0064.9314] Authorization Required: Unauthorized")
               expect(err.body).to be_empty
@@ -122,7 +122,7 @@ RSpec.describe DhlUk::Operations::CreateShipment do
 
         it 'raises an exception' do
           VCR.use_cassette('operations/create_shipment_postcode_failure') do
-            expect { subject.execute }.to raise_error(DhlUk::Errors::ResponseError) do |err|
+            expect { subject.execute }.to raise_error(DHLUk::Errors::ResponseError) do |err|
               expect(err.status).to eq(400)
               expect(err.reason).to eq('Bad Request')
               expect(err.body[:Errors].values).to include(error_message)
@@ -138,7 +138,7 @@ RSpec.describe DhlUk::Operations::CreateShipment do
 
         it 'raises an exception' do
           VCR.use_cassette('operations/create_shipment_collection_date_failure') do
-            expect { subject.execute }.to raise_error(DhlUk::Errors::ResponseError) do |err|
+            expect { subject.execute }.to raise_error(DHLUk::Errors::ResponseError) do |err|
               expect(err.status).to eq(400)
               expect(err.reason).to eq('Bad Request')
               expect(err.body[:Errors].values).to include(error_message)
