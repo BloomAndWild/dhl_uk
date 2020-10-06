@@ -16,5 +16,5 @@ require 'dhl_uk/auth_token'
 require 'dhl_uk/operations/create_shipment'
 require 'dhl_uk/operations/cancel_shipment'
 
-module DhlUk
+module DHLUk
 end

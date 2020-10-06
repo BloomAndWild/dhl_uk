@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe DhlUk::Operations::CancelShipment do
+RSpec.describe DHLUk::Operations::CancelShipment do
   subject { described_class.new(payload: payload) }
 
   before { configure_client }
@@ -141,7 +141,7 @@ RSpec.describe DhlUk::Operations::CancelShipment do
 
         it 'raises a error' do
           VCR.use_cassette('operations/cancel_shipment_savon_config_error') do
-            expect { subject.execute }.to raise_error(DhlUk::Errors::CancelRequestError)
+            expect { subject.execute }.to raise_error(DHLUk::Errors::CancelRequestError)
           end
         end
       end

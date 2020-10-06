@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DhlUk
+module DHLUk
   class Client
     class << self
       attr_reader :config

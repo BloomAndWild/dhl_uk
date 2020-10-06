@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DhlUk
+module DHLUk
   module Errors
     class AuthTokenError < Error
     end

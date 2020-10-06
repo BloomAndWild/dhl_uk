@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DhlUk
+module DHLUk
   module Operations
     class CreateShipment
       RESOURCE_PATH = '/gateway/DomesticConsignment/1.0/DomesticConsignment'
@@ -20,7 +20,7 @@ module DhlUk
 
         return JSON.parse(response.body, symbolize_names: true) if response.success?
 
-        raise DhlUk::Errors::ResponseError.new(response, payload)
+        raise DHLUk::Errors::ResponseError.new(response, payload)
       end
 
       private

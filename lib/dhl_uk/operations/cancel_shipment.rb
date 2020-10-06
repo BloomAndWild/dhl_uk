@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DhlUk
+module DHLUk
   module Operations
     class CancelShipment
       TARGET_NAMESPACE = "http://www.UKMail.com/Services/Contracts/ServiceContracts"
@@ -15,7 +15,7 @@ module DhlUk
 
         response.to_hash
       rescue => err
-        raise DhlUk::Errors::CancelRequestError.new(err)
+        raise DHLUk::Errors::CancelRequestError.new(err)
       end
 
       private

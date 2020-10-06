@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-module DhlUk
-  VERSION = '0.3.0'
+module DHLUk
+  VERSION = '0.4.0'
 end
