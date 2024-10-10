@@ -43,16 +43,19 @@ RSpec.describe DHLUk::Operations::CancelShipment do
 
     context 'failure' do
       let(:failure_response) do
-        cancel_response.deep_merge(
-          cancel_consignment_response: {
-            cancel_consignment_result: {
-              errors: {
-                ukm_web_error: {
-                  code: "8193",
-                  description: "Validation failed. Consignment is invalid because it has already been cancelled."
-                }
-              },
-              result: "Failed",
+        deep_merge(
+          cancel_response,
+          {
+            cancel_consignment_response: {
+              cancel_consignment_result: {
+                errors: {
+                  ukm_web_error: {
+                    code: "8193",
+                    description: "Validation failed. Consignment is invalid because it has already been cancelled."
+                  }
+                },
+                result: "Failed",
+              }
             }
           }
         )
@@ -75,12 +78,15 @@ RSpec.describe DHLUk::Operations::CancelShipment do
 
       context 'when the consignment date is in the past' do
         let(:failure_date_response) do
-          failure_response.deep_merge(
-            cancel_consignment_response: {
-              cancel_consignment_result: {
-                errors: {
-                  ukm_web_error: {
-                    description: "Validation failed. Consignment is invalid because it may not be cancelled after it's collection date."
+          deep_merge(
+            failure_response,
+            {
+              cancel_consignment_response: {
+                cancel_consignment_result: {
+                  errors: {
+                    ukm_web_error: {
+                      description: "Validation failed. Consignment is invalid because it may not be cancelled after it's collection date."
+                    }
                   }
                 }
               }
@@ -106,13 +112,16 @@ RSpec.describe DHLUk::Operations::CancelShipment do
 
       context 'when authentication fails' do
         let(:failure_auth_response) do
-          failure_response.deep_merge(
-            cancel_consignment_response: {
-              cancel_consignment_result: {
-                errors: {
-                  ukm_web_error: {
-                    code: "16384",
-                    description: "Data access failed."
+          deep_merge(
+            failure_response,
+            {
+              cancel_consignment_response: {
+                cancel_consignment_result: {
+                  errors: {
+                    ukm_web_error: {
+                      code: "16384",
+                      description: "Data access failed."
+                    }
                   }
                 }
               }
@@ -147,4 +156,15 @@ RSpec.describe DHLUk::Operations::CancelShipment do
       end
     end
   end
+end
+
+def deep_merge(hash1, hash2)
+  merger = proc do |_key, old_val, new_val|
+    if old_val.is_a?(Hash) && new_val.is_a?(Hash)
+      old_val.merge(new_val, &merger)
+    else
+      new_val
+    end
+  end
+  hash1.merge(hash2, &merger)
 end
