@@ -12,5 +12,5 @@ jobs:
         with:
           bundler-cache: true
       # Test
-      - name: Test with rake
-        run: bundle exec rake
+      - name: Test with rspec
+        run: bundle exec rspec
